@@ -11,7 +11,7 @@ public class ClientService {
     @Autowired
     private ClientRepository clientRepository;
 
-    public Client addClient(Client client){
+    public Client saveClient(Client client){
         return clientRepository.save(client);
     }
 
@@ -19,16 +19,23 @@ public class ClientService {
         return clientRepository.findById(id).orElse(null);
     }
 
-    public Client getClientByName(String name) {
-        return null;
-    }
-
     public String deleteClient(int id) {
+        // deleted/softDelete orders too
         clientRepository.deleteById(id);
         return "Client removed !! " + id;
     }
 
-    public Client updateClient(Client Client) {
-        return null;
+    public Client updateClient(Client client) {
+        Client clientToUpdate =  clientRepository.findById(client.getId()).orElse(null);
+
+        if(clientToUpdate != null){
+            clientToUpdate.setFirstName(client.getFirstName());
+            clientToUpdate.setLastName(client.getLastName());
+            clientToUpdate.setPhoneNumber(client.getPhoneNumber());
+            clientToUpdate.setAddress(client.getAddress());
+            clientToUpdate.setMailAddress(client.getMailAddress());
+            saveClient(clientToUpdate);
+        }
+        return clientToUpdate;
     }
 }

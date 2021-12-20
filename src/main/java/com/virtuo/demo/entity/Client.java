@@ -3,6 +3,8 @@ package com.virtuo.demo.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.Set;
 
 @Entity
 public class Client {
@@ -15,6 +17,9 @@ public class Client {
     private String phoneNumber;
     private String address;
     private String mailAddress;
+
+    @OneToMany
+    private Set<Order> orders;
 
     public Client() {
     }
