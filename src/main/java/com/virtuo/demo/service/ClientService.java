@@ -5,6 +5,8 @@ import com.virtuo.demo.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ClientService {
 
@@ -17,6 +19,10 @@ public class ClientService {
 
     public Client getClientById(int id) {
         return clientRepository.findById(id).orElse(null);
+    }
+
+    public List<Client> getAllClients() {
+        return clientRepository.findAll();
     }
 
     public String deleteClient(int id) {

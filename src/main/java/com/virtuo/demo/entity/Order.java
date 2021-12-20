@@ -21,7 +21,6 @@ public class Order {
     private Client client;
 
     public Order(String number, String name, String type, Client client) {
-        this.id = id;
         this.number = number;
         this.name = name;
         this.type = type;

@@ -5,6 +5,8 @@ import com.virtuo.demo.entity.Order;
 import com.virtuo.demo.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 public class OrderService {
 
     @Autowired
@@ -16,6 +18,10 @@ public class OrderService {
 
     public Order getOrderById(int id) {
         return orderRepository.findById(id).orElse(null);
+    }
+
+    public List<Order> getAllOrders() {
+        return orderRepository.findAll();
     }
 
     public String deleteOrder(int id) {
