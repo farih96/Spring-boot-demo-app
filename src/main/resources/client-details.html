@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Bootstrap Table with Add and Delete Row Feature</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<style>
+body {
+    color: #404E67;
+    background: #F5F7FA;
+    font-family: 'Open Sans', sans-serif;
+}
+.table-wrapper, .container {
+    width: 90%;
+    margin: 30px auto;
+    background: #fff;
+    padding: 20px;	
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+.table-title {
+    padding-bottom: 10px;
+    margin: 0 0 10px;
+}
+.table-title h2 {
+    margin: 6px 0 0;
+    font-size: 22px;
+}
+.table-title .add-new {
+    float: right;
+    height: 30px;
+    font-weight: bold;
+    font-size: 12px;
+    text-shadow: none;
+    min-width: 100px;
+    border-radius: 50px;
+    line-height: 13px;
+}
+.table-title .add-new i {
+    margin-right: 4px;
+}
+table.table tr th, table.table tr td {
+    border-color: #e9e9e9;
+}
+table.table th i {
+    font-size: 13px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+table.table th:last-child {
+    width: 100px;
+}
+table.table td a {
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 5px;
+    min-width: 24px;
+}    
+table.table td a.add {
+    color: #27C46B;
+}
+table.table td a.edit, .editUser {
+    color: #FFC107;
+}
+table.table td a.delete, {
+    color: #E34724;
+}
+
+table.table td a.consult {
+    color: #45ad58;
+}
+table.table td i {
+    font-size: 19px;
+}
+.delete-user {
+    color: #E34724
+}
+.edit-user {
+    color: #27C46B;
+}
+</style>
+<script>
+$(document).ready(function(){
+	
+	
+	// Delete row on delete button click
+	$(document).on("click", ".delete", function(e){
+        if (confirm('Vous voulez supprimer ce client ? Toutes ces commandes seront supprimées également.')) {
+             alert("Your values are :"+ $(this).data("value")); 
+            $(this).parents("tr").remove();
+            $(".add-new").removeAttr("disabled");
+        }
+    });
+
+    function deleteClient(valueId){
+       if (confirm('Vous voulez supprimer ce client:'+valueId+'? Toutes ces commandes seront supprimées également.')) {
+            $(this).parents("tr").remove();
+            $(".add-new").removeAttr("disabled");
+        }
+   }
+
+});
+</script>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-sm bg-light navbar-light">
+  <ul class="navbar-nav">
+    <li class="nav-item active">
+      <a class="nav-link" href="#">Active</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled" href="#">Disabled</a>
+    </li>
+  </ul>
+</nav>
+
+
+<div class="container-lg">
+    <div class="container mx-auto" style="width: 50%;">
+      <div class="row m-0 p-0">
+        <div class="col-10">
+        </div>
+        <div class="col-1">
+            <a class="edit-user" title="Modifier" style="color: #27C46B;cursor: pointer;"><i class="material-icons">&#xE254;</i></a>
+        </div>
+        <div class="col-1">
+            <a class="delete-user" title="Supprimer" style="color: #E34724;cursor: pointer;" data-value="1" ><i class="material-icons">&#xE872;</i></a>
+        </div>
+      </div>
+      <div class="row ml-5">
+        <div class="col-sm">
+          Nom et Prénom :
+        </div>
+        <div class="col-sm">
+          XXXXXXXXX
+        </div>
+      </div>
+
+      <hr>
+      <div class="row ml-5">
+        <div class="col-sm">
+          Email:
+        </div>
+        <div class="col-sm">
+          XXXXXXXXXX
+        </div>
+      </div>
+      <hr>
+      <div class="row ml-5">
+        <div class="col-sm">
+          N° de commandes:
+        </div>
+        <div class="col-sm">
+          XX
+        </div>
+      </div>
+
+      <hr>
+      <div class="row ml-5">
+        <div class="col-sm">
+          Adress:
+        </div>
+        <div class="col-sm" style="overflow-wrap:break-word;">
+         <p> XXXXXXXXXXxXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX </p>
+        </div>
+      </div>
+    </div>
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-8"><h2>Employee <b>Details</b></h2></div>
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-info add-new" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i> Add New</button>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Adresse mail</th>
+                        <th>Adresse</th>
+                        <th style="width:  18%">N° de commandes</th>
+                        <th style="width:  15%">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>John Doe</td>
+                        <td>Administration</td>
+                        <td>(171) 555-2222</td>
+                        <td>(171) 555-2222</td>
+                        <td>22</td>
+                        <td>
+                            <a class="edit" title="Edit" ><i class="material-icons">&#xE254;</i></a>
+                            <a class="delete" title="Delete" ><i class="material-icons">&#xE872;</i></a>
+                            <a class="consult" title="voir les commandes" ><i class="material-icons">&#xE5E1;</i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Peter Parker</td>
+                        <td>Customer Service</td>
+                        <td>(313) 555-5735</td>
+                        <td>(313) 555-5735</td>
+                        <td>12</td>
+                        <td>
+                            <a class="edit" title="Edit" ><i class="material-icons">&#xE254;</i></a>
+                            <a class="delete" title="Delete" ><i class="material-icons">&#xE872;</i></a>
+                            <a class="consult" title="voir les commandes" ><i class="material-icons">&#xE5E1;</i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Fran Wilson</td>
+                        <td>Human Resources</td>
+                        <td>(503) 555-9931</td>
+                        <td>(503) 555-9931</td>
+                        <td>2</td>
+                        <td>
+                            <a class="edit" title="Modifier" ><i class="material-icons">&#xE254;</i></a>
+                            <a class="delete" title="Supprimer" data-value="1" ><i class="material-icons">&#xE872;</i></a>
+                            <a class="consult"  title="Voir les commandes" ><i class="material-icons">&#xE5E1;</i></a>
+                        </td>
+                    </tr>      
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Add Modal -->
+  <div class="modal" id="addModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h5 class="modal-title">Ajouter Un Client</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+           
+           <form method="post" th:action="@{/users/}" th:object="${userInfo}" class="col p-3 mb-5">
+            <div class="form-group">
+                <label for="firstName">Nom :</label>
+                <input id="firstName" required type="text" th:field="*{lastName}"
+                       class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Prénom:</label>
+                <input id="lastName"  required type="text" th:field="*{firstName}"
+                       class="form-control"/>
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Adresse mail:</label>
+                <input id="lastName"  required type="text" th:field="*{lastName}"
+                       class="form-control"/>
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Adresse :</label>
+                <input id="lastName"  required type="text" th:field="*{lastName}"
+                       class="form-control"/>
+            </div>
+        
+
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+        
+          <input type="submit" class="btn btn-primary" value="Ajouter">
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Modal -->
+  <div class="modal" id="editModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h5 class="modal-title">Modifier Un Client</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+           
+           <form method="post" th:action="@{/users/}" th:object="${userInfo}" class="col p-3 mb-5">
+            <div class="form-group">
+                <label for="firstName">Nom :</label>
+                <input id="firstName" placeholder="Enter First Name" required type="text" th:field="*{lastName}"
+                       class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Prénom:</label>
+                <input id="lastName"  required type="text" th:field="*{firstName}"
+                       class="form-control"/>
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Adresse mail:</label>
+                <input id="lastName"  required type="text" th:field="*{lastName}"
+                       class="form-control"/>
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Adresse :</label>
+                <input id="lastName"  required type="text" th:field="*{lastName}"
+                       class="form-control"/>
+            </div>
+        
+
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+        
+          <input type="submit" class="btn btn-primary" value="Modifier">
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
