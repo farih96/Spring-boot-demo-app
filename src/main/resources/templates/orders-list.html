@@ -18,7 +18,7 @@ body {
     background: #F5F7FA;
     font-family: 'Open Sans', sans-serif;
 }
-.table-wrapper, .container {
+.table-wrapper {
     width: 90%;
     margin: 30px auto;
     background: #fff;
@@ -66,10 +66,10 @@ table.table td a {
 table.table td a.add {
     color: #27C46B;
 }
-table.table td a.edit, .editUser {
+table.table td a.edit {
     color: #FFC107;
 }
-table.table td a.delete, {
+table.table td a.delete {
     color: #E34724;
 }
 
@@ -78,13 +78,7 @@ table.table td a.consult {
 }
 table.table td i {
     font-size: 19px;
-}
-.delete-user {
-    color: #E34724
-}
-.edit-user {
-    color: #27C46B;
-}
+} 
 </style>
 <script>
 $(document).ready(function(){
@@ -130,111 +124,58 @@ $(document).ready(function(){
 
 
 <div class="container-lg">
-    <div class="container mx-auto" style="width: 50%;">
-      <div class="row m-0 p-0">
-        <div class="col-10">
-        </div>
-        <div class="col-1">
-            <a class="edit-user" title="Modifier" style="color: #27C46B;cursor: pointer;"><i class="material-icons">&#xE254;</i></a>
-        </div>
-        <div class="col-1">
-            <a class="delete-user" title="Supprimer" style="color: #E34724;cursor: pointer;" data-value="1" ><i class="material-icons">&#xE872;</i></a>
-        </div>
-      </div>
-      <div class="row ml-5">
-        <div class="col-sm">
-          Nom et Prénom :
-        </div>
-        <div class="col-sm">
-          XXXXXXXXX
-        </div>
-      </div>
-
-      <hr>
-      <div class="row ml-5">
-        <div class="col-sm">
-          Email:
-        </div>
-        <div class="col-sm">
-          XXXXXXXXXX
-        </div>
-      </div>
-      <hr>
-      <div class="row ml-5">
-        <div class="col-sm">
-          N° de commandes:
-        </div>
-        <div class="col-sm">
-          XX
-        </div>
-      </div>
-
-      <hr>
-      <div class="row ml-5">
-        <div class="col-sm">
-          Adress:
-        </div>
-        <div class="col-sm" style="overflow-wrap:break-word;">
-         <p> XXXXXXXXXXxXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX </p>
-        </div>
-      </div>
-    </div>
     <div class="table-responsive">
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-8"><h2>Employee <b>Details</b></h2></div>
+                    <div class="col-sm-8"><h2>Liste de Commandes</h2></div>
                     <div class="col-sm-4">
-                        <button type="button" class="btn btn-info add-new" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i> Add New</button>
+                        <button type="button" class="btn btn-info add-new" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i> Ajouter une commande</button>
                     </div>
                 </div>
             </div>
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Nom</th>
-                        <th>Prénom</th>
-                        <th>Adresse mail</th>
-                        <th>Adresse</th>
-                        <th style="width:  18%">N° de commandes</th>
+                        <th>N° du commande</th>
+                        <th>Nom de la commande</th>
+                        <th>Client</th>
+                        <th>Créé le </th>
                         <th style="width:  15%">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>John Doe</td>
-                        <td>Administration</td>
-                        <td>(171) 555-2222</td>
-                        <td>(171) 555-2222</td>
-                        <td>22</td>
+                        <td>nff54445 </td>
+                        <td>dsfsdgsdg </td>
+                        <td>farih med</td>
+                        <td>12/05/2020</td>
                         <td>
                             <a class="edit" title="Edit" ><i class="material-icons">&#xE254;</i></a>
                             <a class="delete" title="Delete" ><i class="material-icons">&#xE872;</i></a>
-                            <a class="consult" title="voir les commandes" ><i class="material-icons">&#xE5E1;</i></a>
+                            <a class="consult" title="voir les commandes de ce client" ><i class="material-icons">&#xE5E1;</i></a>
                         </td>
                     </tr>
                     <tr>
-                        <td>Peter Parker</td>
-                        <td>Customer Service</td>
-                        <td>(313) 555-5735</td>
-                        <td>(313) 555-5735</td>
-                        <td>12</td>
+                        <td>nff54445 </td>
+                        <td>dsfsdgsdg </td>
+                        <td>farih med</td>
+                        <td>12/05/2020</td>
                         <td>
                             <a class="edit" title="Edit" ><i class="material-icons">&#xE254;</i></a>
                             <a class="delete" title="Delete" ><i class="material-icons">&#xE872;</i></a>
-                            <a class="consult" title="voir les commandes" ><i class="material-icons">&#xE5E1;</i></a>
+                            <a class="consult" title="voir les commandes de ce client" ><i class="material-icons">&#xE5E1;</i></a>
                         </td>
                     </tr>
                     <tr>
-                        <td>Fran Wilson</td>
-                        <td>Human Resources</td>
-                        <td>(503) 555-9931</td>
-                        <td>(503) 555-9931</td>
-                        <td>2</td>
+                        <td>nff54445 </td>
+                        <td>dsfsdgsdg </td>
+                        <td>farih med</td>
+                        <td>12/05/2020</td>
                         <td>
                             <a class="edit" title="Modifier" ><i class="material-icons">&#xE254;</i></a>
                             <a class="delete" title="Supprimer" data-value="1" ><i class="material-icons">&#xE872;</i></a>
-                            <a class="consult"  title="Voir les commandes" ><i class="material-icons">&#xE5E1;</i></a>
+                            <a class="consult"  title="voir les commandes de ce client" ><i class="material-icons">&#xE5E1;</i></a>
                         </td>
                     </tr>      
                 </tbody>
@@ -249,34 +190,34 @@ $(document).ready(function(){
       
         <!-- Modal Header -->
         <div class="modal-header">
-          <h5 class="modal-title">Ajouter Un Client</h5>
+          <h5 class="modal-title">Ajouter Une commande</h5>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         
         <!-- Modal body -->
         <div class="modal-body">
            
-           <form method="post" th:action="@{/users/}" th:object="${userInfo}" class="col p-3 mb-5">
+           <form method="post" th:action="@{/users/}" th:object="${order}" class="col p-3 mb-5">
             <div class="form-group">
-                <label for="firstName">Nom :</label>
-                <input id="firstName" required type="text" th:field="*{lastName}"
+                <label for="firstName">N° du commande :</label>
+                <input required type="text" th:field="*{lastName}"
                        class="form-control"/>
             </div>
             <div class="form-group">
-                <label for="lastName">Prénom:</label>
-                <input id="lastName"  required type="text" th:field="*{firstName}"
-                       class="form-control"/>
-            </div>
-
-            <div class="form-group">
-                <label for="lastName">Adresse mail:</label>
-                <input id="lastName"  required type="text" th:field="*{lastName}"
+                <label >Nom du commande:</label>
+                <input  required type="text" th:field="*{firstName}"
                        class="form-control"/>
             </div>
 
             <div class="form-group">
-                <label for="lastName">Adresse :</label>
-                <input id="lastName"  required type="text" th:field="*{lastName}"
+                <label >Type:</label>
+                <input  required type="text" th:field="*{lastName}"
+                       class="form-control"/>
+            </div>
+
+            <div class="form-group">
+                <label >Client :</label>
+                <input  required type="text" th:field="*{lastName}"
                        class="form-control"/>
             </div>
         
@@ -300,34 +241,34 @@ $(document).ready(function(){
       
         <!-- Modal Header -->
         <div class="modal-header">
-          <h5 class="modal-title">Modifier Un Client</h5>
+          <h5 class="modal-title">Modifier Une commande</h5>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         
         <!-- Modal body -->
         <div class="modal-body">
            
-           <form method="post" th:action="@{/users/}" th:object="${userInfo}" class="col p-3 mb-5">
+           <form method="post" th:action="@{/users/}" th:object="${order}" class="col p-3 mb-5">
             <div class="form-group">
-                <label for="firstName">Nom :</label>
-                <input id="firstName" placeholder="Enter First Name" required type="text" th:field="*{lastName}"
+                <label for="firstName">N° du commande :</label>
+                <input id="firstName" required type="text" th:field="*{lastName}"
                        class="form-control"/>
             </div>
             <div class="form-group">
-                <label for="lastName">Prénom:</label>
-                <input id="lastName"  required type="text" th:field="*{firstName}"
-                       class="form-control"/>
-            </div>
-
-            <div class="form-group">
-                <label for="lastName">Adresse mail:</label>
-                <input id="lastName"  required type="text" th:field="*{lastName}"
+                <label >Nom du commande:</label>
+                <input required type="text" th:field="*{firstName}"
                        class="form-control"/>
             </div>
 
             <div class="form-group">
-                <label for="lastName">Adresse :</label>
-                <input id="lastName"  required type="text" th:field="*{lastName}"
+                <label >Type:</label>
+                <input  required type="text" th:field="*{lastName}"
+                       class="form-control"/>
+            </div>
+
+            <div class="form-group">
+                <label >Client :</label>
+                <input  required type="text" th:field="*{lastName}"
                        class="form-control"/>
             </div>
         

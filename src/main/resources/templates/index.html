@@ -41,7 +41,6 @@
   .item-link:hover {
     background-color: #6794c2;
     color: white;
-    cursor: pointer;
   }
   .item-link {
     margin-left: 0.25rem;
@@ -51,44 +50,31 @@
     border: 1px solid #8c8e96;
     border-radius: 5px;
   }
+  .item-link a {
+    color:inherit;
+    text-decoration: none;
+  }
+  .item-link a:hover {
+    cursor: pointer;
+  }
   </style>
 </head>
 <body>
 
-<!-- Navbar 
-<nav class="navbar navbar-default">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#">Me</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">WHO</a></li>
-        <li><a href="#">WHAT</a></li>
-        <li><a href="#">WHERE</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>-->
 
-<div class="container-fluid text-center bg-3">   
+<div class="container-fluid text-center bg-3">
   <div class="row">
     <div class="col-sm-3">
     </div>
 
-    <div class="col-sm-3 item-link">
-      Gérer les clients
+    <div class="col-sm-3 item-link" >
+      <a class="text-decoration-none" th:href="@{/client/list}"> Gérer les clients </a>
     </div>
     <div class="col-sm-3 item-link">
-      Gérer les commandes
+      <a class="text-decoration-none" th:href="@{/order/list}"> Gérer les commandes </a>
     </div>
 
-    <div class="col-sm-3"> 
+    <div class="col-sm-3">
     </div>
   </div>
 </div>

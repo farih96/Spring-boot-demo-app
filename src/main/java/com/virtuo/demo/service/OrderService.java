@@ -4,9 +4,11 @@ import com.virtuo.demo.entity.Client;
 import com.virtuo.demo.entity.Order;
 import com.virtuo.demo.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class OrderService {
 
     @Autowired

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/client")
 public class ClientController {
 
@@ -26,7 +26,8 @@ public class ClientController {
     public String clientsList(Model model){
         List<Client> clients= clientService.getAllClients();
         model.addAttribute("clients", clients);
-        return"client_list";
+        model.addAttribute(new Client());
+        return "clients-list";
     }
     @GetMapping("/add")
     public String addClientForm(Model model) {
@@ -37,7 +38,7 @@ public class ClientController {
     @PostMapping("/add")
     public String processAddClient(Client client) {
         clientService.saveClient(client);
-        return "redirect:/client/";
+        return "redirect:/client/list";
     }
 
     @GetMapping("/edit/{id}")
