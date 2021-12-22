@@ -3,24 +3,21 @@ package com.virtuo.demo.entity;
 import javax.persistence.*;
 
 @Entity
+@Table(name="orders")
 public class Order {
 
-    /*
-     Commande ( numéro de commande ,  nom de la commande , type de commande)
-     - Un client peut avoir 0 ou plusieurs commandes
-     -  Une commande appartient  à un et  un seul client
-     */
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String number;
     private String name;
     private String type;
     @ManyToOne
-    @JoinColumn(name="client_id")
+    @JoinColumn(name="client_id", nullable=false)
     private Client client;
 
-    public Order(String number, String name, String type, Client client) {
+    public Order(int id, String number, String name, String type, Client client) {
+        this.id = id;
         this.number = number;
         this.name = name;
         this.type = type;

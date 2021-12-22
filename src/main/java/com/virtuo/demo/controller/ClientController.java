@@ -54,10 +54,10 @@ public class ClientController {
         return "redirect:/client/list";
     }
 
-    @PostMapping("/delete")
-    public String deletePatient(Client client) {
-         //clientService.deleteClient(client.getId())
-         return "delete Client and their orders";
+    @GetMapping("/delete/{id}")
+    public String deletePatient(@PathVariable("id") int id) {
+         clientService.deleteClient(id);
+         return "redirect:/client/list";
     }
 
 }

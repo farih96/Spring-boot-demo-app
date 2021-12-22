@@ -2,19 +2,24 @@ package com.virtuo.demo.controller;
 
 import com.virtuo.demo.entity.Client;
 import com.virtuo.demo.entity.Order;
+import com.virtuo.demo.service.ClientService;
 import com.virtuo.demo.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/order")
 public class OrderController {
 
 	@Autowired
     private OrderService orderService;
+
+	@Autowired
+    private ClientService  clientService;
 
     @RequestMapping("/{id}")
     public String getOrderById(@PathVariable("id") int id){
@@ -25,27 +30,30 @@ public class OrderController {
     @GetMapping("/list")
     public String ordersList(Model model){
         List<Order> orders= orderService.getAllOrders();
+        List<Client> clients = clientService.getAllClients();
         model.addAttribute("orders", orders);
-        return"client_list";
+        model.addAttribute("clients", clients);
+        model.addAttribute("order", new Order());
+        return "orders-list";
     }
 
     @GetMapping("/add")
     public String addOrderForm(Model model) {
          model.addAttribute("order", new Order());
-         return "order/add";
+         return "order-list";
     }
 
     @PostMapping("/add")
     public String processAddOrder(Order order) {
         orderService.saveOrder(order);
-        return "redirect:/order/";
+        return "redirect:/order/list";
     }
 
     @GetMapping("/edit/{id}")
     public String updateOrderForm(@PathVariable("id") int id,Model model) {
         Order order  = orderService.getOrderById(id);
         model.addAttribute("order", order);
-        return "order/edit";  
+        return "order-edit";
     }
 
     @PostMapping("/edit")
@@ -54,9 +62,9 @@ public class OrderController {
         return "redirect:/order/";
     }
 
-    @PostMapping("/delete")
-    public String deleteOrder(Order order) {
-         //orderService.deleteOrder(order.getId())
-         return "delete order";
+    @GetMapping("/delete/{id}")
+    public String deleteOrder(@PathVariable("id") int id) {
+        orderService.deleteOrder(id);
+        return "redirect:/order/list";
     }
 }

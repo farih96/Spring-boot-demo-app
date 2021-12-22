@@ -15,7 +15,7 @@ public class Client {
     private String address;
     private String mailAddress;
 
-    @OneToMany
+    @OneToMany(mappedBy="client")
     private Set<Order> orders;
 
     public Client() {

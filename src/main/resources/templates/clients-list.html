@@ -89,7 +89,9 @@ $(document).ready(function(){
 	// Delete row on delete button click
 	$(document).on("click", ".delete", function(e){
         if (confirm('Vous voulez supprimer ce client ? Toutes ces commandes seront supprimées également.')) {
-            alert("Your values are :"+ $(this).data("value"));
+            //alert("Your values are :"+ $(this).data("value"));
+            url = "delete/"+$(this).data("value")
+            window.location.href = url;
             $(this).parents("tr").remove();
             $(".add-new").removeAttr("disabled");
         }
