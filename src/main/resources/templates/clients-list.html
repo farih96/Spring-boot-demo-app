@@ -89,18 +89,13 @@ $(document).ready(function(){
 	// Delete row on delete button click
 	$(document).on("click", ".delete", function(e){
         if (confirm('Vous voulez supprimer ce client ? Toutes ces commandes seront supprimées également.')) {
-             alert("Your values are :"+ $(this).data("value")); 
+            alert("Your values are :"+ $(this).data("value"));
             $(this).parents("tr").remove();
             $(".add-new").removeAttr("disabled");
         }
     });
 
-    function deleteClient(valueId){
-       if (confirm('Vous voulez supprimer ce client:'+valueId+'? Toutes ces commandes seront supprimées également.')) {
-            $(this).parents("tr").remove();
-            $(".add-new").removeAttr("disabled");
-        }
-   }
+
 
 });
 </script>
@@ -155,7 +150,7 @@ $(document).ready(function(){
                     <td th:text="${client.mailAddress}"></td>
                     <td th:text="${client.getId()}"></td>
                     <td>
-                        <a class="edit" title="Edit" ><i class="material-icons">&#xE254;</i></a>
+                        <a class="edit" title="Edit" th:href="@{/client/edit/{id}(id=${client.id})}"><i class="material-icons">&#xE254;</i></a>
                         <a class="delete" title="Delete" th:data-value="${client.id}"><i class="material-icons">&#xE872;</i></a>
                         <a class="consult" title="voir les commandes" th:href="@{/client/{id}(id=${client.id})}" ><i class="material-icons">&#xE5E1;</i></a>
                     </td>

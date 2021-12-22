@@ -45,13 +45,13 @@ public class ClientController {
     public String updateClientForm(@PathVariable("id") int id,Model model) {
         Client client  = clientService.getClientById(id);
         model.addAttribute("client", client);
-        return "client/edit";  
+        return "client-edit";
     }
 
     @PostMapping("/edit")
     public String processUpdateClient(Client client) {
         clientService.updateClient(client);
-        return "redirect:/client/";
+        return "redirect:/client/list";
     }
 
     @PostMapping("/delete")
