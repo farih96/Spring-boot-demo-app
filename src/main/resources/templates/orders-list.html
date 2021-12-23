@@ -1,121 +1,109 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Bootstrap Table with Add and Delete Row Feature</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<style>
-body {
-    color: #404E67;
-    background: #F5F7FA;
-    font-family: 'Open Sans', sans-serif;
-}
-.table-wrapper {
-    width: 90%;
-    margin: 30px auto;
-    background: #fff;
-    padding: 20px;	
-    box-shadow: 0 1px 1px rgba(0,0,0,.05);
-}
-.table-title {
-    padding-bottom: 10px;
-    margin: 0 0 10px;
-}
-.table-title h2 {
-    margin: 6px 0 0;
-    font-size: 22px;
-}
-.table-title .add-new {
-    float: right;
-    height: 30px;
-    font-weight: bold;
-    font-size: 12px;
-    text-shadow: none;
-    min-width: 100px;
-    border-radius: 50px;
-    line-height: 13px;
-}
-.table-title .add-new i {
-    margin-right: 4px;
-}
-table.table tr th, table.table tr td {
-    border-color: #e9e9e9;
-}
-table.table th i {
-    font-size: 13px;
-    margin: 0 5px;
-    cursor: pointer;
-}
-table.table th:last-child {
-    width: 100px;
-}
-table.table td a {
-    cursor: pointer;
-    display: inline-block;
-    margin: 0 5px;
-    min-width: 24px;
-}    
-table.table td a.add {
-    color: #27C46B;
-}
-table.table td a.edit {
-    color: #FFC107;
-}
-table.table td a.delete {
-    color: #E34724;
-}
-
-table.table td a.consult {
-    color: #45ad58;
-}
-table.table td i {
-    font-size: 19px;
-} 
-</style>
-<script>
-$(document).ready(function(){
-	
-	
-	// Delete row on delete button click
-	$(document).on("click", ".delete", function(e){
-        if (confirm('Vous voulez supprimer cette commande ?')) {
-            url = "delete/"+$(this).data("value")
-            window.location.href = url;
-            $(this).parents("tr").remove();
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Demo App - Liste des commandes</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <style>
+        body {
+            color: #404E67;
+            background: #F5F7FA;
+            font-family: 'Open Sans', sans-serif;
         }
-    });
+        .table-wrapper {
+            width: 90%;
+            margin: 30px auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 1px 1px rgba(0,0,0,.05);
+        }
+        .table-title {
+            padding-bottom: 10px;
+            margin: 0 0 10px;
+        }
+        .table-title h2 {
+            margin: 6px 0 0;
+            font-size: 22px;
+        }
+        .table-title .add-new {
+            float: right;
+            height: 30px;
+            font-weight: bold;
+            font-size: 12px;
+            text-shadow: none;
+            min-width: 100px;
+            border-radius: 50px;
+            line-height: 13px;
+        }
+        .table-title .add-new i {
+            margin-right: 4px;
+        }
+        table.table tr th, table.table tr td {
+            border-color: #e9e9e9;
+        }
+        table.table th i {
+            font-size: 13px;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+        table.table th:last-child {
+            width: 100px;
+        }
+        table.table td a {
+            cursor: pointer;
+            display: inline-block;
+            margin: 0 5px;
+            min-width: 24px;
+        }
+        table.table td a.add {
+            color: #27C46B;
+        }
+        table.table td a.edit {
+            color: #FFC107;
+        }
+        table.table td a.delete {
+            color: #E34724;
+        }
 
-});
-</script>
+        table.table td a.consult {
+            color: #45ad58;
+        }
+        table.table td i {
+            font-size: 19px;
+        }
+
+
+    </style>
+    <script>
+        $(document).ready(function(){
+
+
+            // Delete row on delete button click
+            $(document).on("click", ".delete", function(e){
+                if (confirm('Vous voulez supprimer cette commande ?')) {
+                    url = "delete/"+$(this).data("value")
+                    window.location.href = url;
+                    $(this).parents("tr").remove();
+                }
+            });
+
+        });
+
+
+    </script>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-sm bg-light navbar-light">
-  <ul class="navbar-nav">
-    <li class="nav-item active">
-      <a class="nav-link" href="#">Active</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link disabled" href="#">Disabled</a>
-    </li>
-  </ul>
-</nav>
+<div th:insert="nav-bar :: header"></div>
 
 
 <div class="container-lg">
@@ -125,20 +113,22 @@ $(document).ready(function(){
                 <div class="row">
                     <div class="col-sm-8"><h2>Liste de Commandes</h2></div>
                     <div class="col-sm-4">
-                        <button type="button" class="btn btn-info add-new" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i> Ajouter une commande</button>
+                        <button type="button" class="btn btn-info add-new" data-toggle="modal" data-target="#addModal">
+                            <i class="fa fa-plus"></i> Ajouter une commande
+                        </button>
                     </div>
                 </div>
             </div>
             <h4 class="text-center" th:case="0">Aucune commande pour le moment!</h4>
             <table class="table table-bordered" th:case="*">
                 <thead>
-                    <tr>
-                        <th>N° du commande</th>
-                        <th>Nom de la commande</th>
-                        <th>Type</th>
-                        <th>Client</th>
-                        <th style="width:  15%">Actions</th>
-                    </tr>
+                <tr>
+                    <th>N° du commande</th>
+                    <th>Nom de la commande</th>
+                    <th>Type</th>
+                    <th>Client</th>
+                    <th style="width:  15%">Actions</th>
+                </tr>
                 </thead>
                 <tbody>
                 <tr th:each="order : ${orders}">
@@ -147,9 +137,12 @@ $(document).ready(function(){
                     <td th:text="${order.type}"></td>
                     <td th:text="${order.client.firstName}+' '+${order.client.lastName}"></td>
                     <td>
-                        <a class="edit" title="Edit" th:href="@{/order/edit/{id}(id=${order.id})}" ><i class="material-icons">&#xE254;</i></a>
-                        <a class="delete" title="Delete" th:data-value="${order.id}" ><i class="material-icons">&#xE872;</i></a>
-                        <a class="consult" title="voir les commandes de ce client" th:href="@{/client/{id}(id=${order.id})}" ><i class="material-icons">&#xE5E1;</i></a>
+                        <a class="edit" title="Edit" th:href="@{/order/edit/{id}(id=${order.id})}"><i
+                                class="material-icons">&#xE254;</i></a>
+                        <a class="delete" title="Delete" th:data-value="${order.id}"><i
+                                class="material-icons">&#xE872;</i></a>
+                        <a class="consult" title="voir les commandes de ce client"
+                           th:href="@{/client/{id}(id=${order.id})}"><i class="material-icons">&#xE5E1;</i></a>
                     </td>
                 </tr>
                 </tbody>
@@ -158,57 +151,58 @@ $(document).ready(function(){
     </div>
 </div>
 <!-- Add Modal -->
-  <div class="modal" id="addModal">
+<div class="modal" id="addModal">
     <div class="modal-dialog">
-      <div class="modal-content">
-      
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h5 class="modal-title">Ajouter Une commande</h5>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h5 class="modal-title">Ajouter Une commande</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+
+                <form method="post" th:action="@{/order/add}" th:object="${order}" class="col p-3 mb-5">
+                    <div class="form-group">
+                        <label>N° du commande :</label>
+                        <input required type="text" th:field="*{number}"
+                               class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Nom du commande:</label>
+                        <input required type="text" th:field="*{name}"
+                               class="form-control"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Type:</label>
+                        <input required type="text" th:field="*{type}"
+                               class="form-control"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Client:</label>
+                        <select class="form-control" th:field="*{client}" id="client" required>
+                            <option value="" selected disabled>Choisissez un client</option>
+                            <option th:each="client : ${clients}" th:value="${client.id}"
+                                    th:text="${client.lastName}+' '+${client.firstName}"></option>
+                        </select>
+                    </div>
+
+
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+
+                <input type="submit" class="btn btn-primary" value="Ajouter">
+            </div>
+            </form>
         </div>
-        
-        <!-- Modal body -->
-        <div class="modal-body">
-           
-           <form method="post" th:action="@{/order/add}" th:object="${order}" class="col p-3 mb-5">
-            <div class="form-group">
-                <label >N° du commande :</label>
-                <input required type="text" th:field="*{number}"
-                       class="form-control"/>
-            </div>
-            <div class="form-group">
-                <label >Nom du commande:</label>
-                <input  required type="text" th:field="*{name}"
-                       class="form-control"/>
-            </div>
-
-            <div class="form-group">
-                <label >Type:</label>
-                <input  required type="text" th:field="*{type}"
-                       class="form-control"/>
-            </div>
-
-            <div class="form-group">
-                 <label >Client:</label>
-                <select class="form-control" th:field="*{client}" id="client" required>
-                    <option value="" selected disabled >Choisissez un client </option>
-                    <option  th:each="client : ${clients}" th:value="${client.id}" th:text="${client.lastName}+' '+${client.firstName}"></option>
-                </select>
-            </div>
-
-
-        </div>
-        
-        <!-- Modal footer -->
-        <div class="modal-footer">
-        
-          <input type="submit" class="btn btn-primary" value="Ajouter">
-        </div>
-        </form>
-      </div>
     </div>
-  </div>
+</div>
 
 </body>
 </html>

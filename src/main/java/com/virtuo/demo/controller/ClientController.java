@@ -32,11 +32,6 @@ public class ClientController {
         model.addAttribute(new Client());
         return "clients-list";
     }
-    @GetMapping("/add")
-    public String addClientForm(Model model) {
-         model.addAttribute("client", new Client());
-         return "client/add";
-    }
 
     @PostMapping("/add")
     public String processAddClient(Client client) {

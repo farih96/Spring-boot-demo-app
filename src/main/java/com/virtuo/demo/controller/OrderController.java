@@ -37,12 +37,6 @@ public class OrderController {
         return "orders-list";
     }
 
-    @GetMapping("/add")
-    public String addOrderForm(Model model) {
-         model.addAttribute("order", new Order());
-         return "orders-list";
-    }
-
     @PostMapping("/add")
     public String processAddOrder(Order order) {
         orderService.saveOrder(order);

@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Theme Made By www.w3schools.com - No Copyright -->
-  <title>Bootstrap Theme Simply Me</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <style>
+    <title>Demo App</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
   body {
     font: 20px Montserrat, sans-serif;
     line-height: 1.8;
@@ -57,26 +56,27 @@
   .item-link a:hover {
     cursor: pointer;
   }
-  </style>
+
+    </style>
 </head>
 <body>
 
 
 <div class="container-fluid text-center bg-3">
-  <div class="row">
-    <div class="col-sm-3">
-    </div>
+    <div class="row">
+        <div class="col-sm-3">
+        </div>
 
-    <div class="col-sm-3 item-link" >
-      <a class="text-decoration-none" th:href="@{/client/list}"> Gérer les clients </a>
-    </div>
-    <div class="col-sm-3 item-link">
-      <a class="text-decoration-none" th:href="@{/order/list}"> Gérer les commandes </a>
-    </div>
+        <div class="col-sm-3 item-link">
+            <a class="text-decoration-none" th:href="@{/client/list}"> Gérer les clients </a>
+        </div>
+        <div class="col-sm-3 item-link">
+            <a class="text-decoration-none" th:href="@{/order/list}"> Gérer les commandes </a>
+        </div>
 
-    <div class="col-sm-3">
+        <div class="col-sm-3">
+        </div>
     </div>
-  </div>
 </div>
 
 </body>
