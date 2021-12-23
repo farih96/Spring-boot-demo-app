@@ -92,7 +92,6 @@ $(document).ready(function(){
             url = "delete/"+$(this).data("value")
             window.location.href = url;
             $(this).parents("tr").remove();
-            $(".add-new").removeAttr("disabled");
         }
     });
 
@@ -120,7 +119,7 @@ $(document).ready(function(){
 
 
 <div class="container-lg">
-    <div class="table-responsive">
+    <div class="table-responsive" th:switch="${#lists.size(orders)}">
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
@@ -130,7 +129,8 @@ $(document).ready(function(){
                     </div>
                 </div>
             </div>
-            <table class="table table-bordered">
+            <h4 class="text-center" th:case="0">Aucune commande pour le moment!</h4>
+            <table class="table table-bordered" th:case="*">
                 <thead>
                     <tr>
                         <th>N° du commande</th>
@@ -147,9 +147,9 @@ $(document).ready(function(){
                     <td th:text="${order.type}"></td>
                     <td th:text="${order.client.firstName}+' '+${order.client.lastName}"></td>
                     <td>
-                        <a class="edit" title="Edit" ><i class="material-icons">&#xE254;</i></a>
+                        <a class="edit" title="Edit" th:href="@{/order/edit/{id}(id=${order.id})}" ><i class="material-icons">&#xE254;</i></a>
                         <a class="delete" title="Delete" th:data-value="${order.id}" ><i class="material-icons">&#xE872;</i></a>
-                        <a class="consult" title="voir les commandes de ce client" ><i class="material-icons">&#xE5E1;</i></a>
+                        <a class="consult" title="voir les commandes de ce client" th:href="@{/client/{id}(id=${order.id})}" ><i class="material-icons">&#xE5E1;</i></a>
                     </td>
                 </tr>
                 </tbody>
@@ -192,7 +192,7 @@ $(document).ready(function(){
             <div class="form-group">
                  <label >Client:</label>
                 <select class="form-control" th:field="*{client}" id="client" required>
-                    <option value="null" selected disabled >Choisissez un client </option>
+                    <option value="" selected disabled >Choisissez un client </option>
                     <option  th:each="client : ${clients}" th:value="${client.id}" th:text="${client.lastName}+' '+${client.firstName}"></option>
                 </select>
             </div>

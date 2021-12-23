@@ -1,6 +1,7 @@
 package com.virtuo.demo.controller;
 
 import com.virtuo.demo.entity.Client;
+import com.virtuo.demo.entity.Order;
 import com.virtuo.demo.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,9 +18,11 @@ public class ClientController {
     private ClientService  clientService;
 
     @RequestMapping("/{id}")
-    public String findClientById(@PathVariable("id") int id){
-        Client Client = clientService.getClientById(id);
-        return Client.getFirstName();
+    public String findClientById(@PathVariable("id") int id, Model model){
+        Client client = clientService.getClientById(id);
+        model.addAttribute("client", client);
+        model.addAttribute("order", new Order());
+        return "client-details";
     }
 
     @GetMapping("/list")

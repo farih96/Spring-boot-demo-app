@@ -40,7 +40,7 @@ public class OrderController {
     @GetMapping("/add")
     public String addOrderForm(Model model) {
          model.addAttribute("order", new Order());
-         return "order-list";
+         return "orders-list";
     }
 
     @PostMapping("/add")
@@ -52,14 +52,16 @@ public class OrderController {
     @GetMapping("/edit/{id}")
     public String updateOrderForm(@PathVariable("id") int id,Model model) {
         Order order  = orderService.getOrderById(id);
+        List<Client> clients = clientService.getAllClients();
         model.addAttribute("order", order);
+        model.addAttribute("clients", clients);
         return "order-edit";
     }
 
     @PostMapping("/edit")
     public String processUpdateOrder(Order order) {
         orderService.updateOrder(order);
-        return "redirect:/order/";
+        return "redirect:/order/list";
     }
 
     @GetMapping("/delete/{id}")

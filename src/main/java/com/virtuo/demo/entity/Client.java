@@ -15,10 +15,18 @@ public class Client {
     private String address;
     private String mailAddress;
 
-    @OneToMany(mappedBy="client")
+    @OneToMany(mappedBy="client",cascade = CascadeType.REMOVE)
     private Set<Order> orders;
 
     public Client() {
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
     }
 
     public Client(int id, String firstName, String lastName, String phoneNumber, String address, String mailAddress) {

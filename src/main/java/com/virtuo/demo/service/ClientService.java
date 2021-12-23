@@ -2,6 +2,7 @@ package com.virtuo.demo.service;
 
 import com.virtuo.demo.entity.Client;
 import com.virtuo.demo.repository.ClientRepository;
+import com.virtuo.demo.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,9 @@ public class ClientService {
 
     @Autowired
     private ClientRepository clientRepository;
+
+    @Autowired
+    private OrderRepository orderRepository;
 
     public Client saveClient(Client client){
         return clientRepository.save(client);
@@ -27,6 +31,7 @@ public class ClientService {
 
     public String deleteClient(int id) {
         // deleted/softDelete orders too
+
         clientRepository.deleteById(id);
         return "Client removed !! " + id;
     }

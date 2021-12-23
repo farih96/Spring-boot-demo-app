@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Bootstrap Table with Add and Delete Row Feature</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <style>
+body {
+    color: #404E67;
+    background: #F5F7FA;
+    font-family: 'Open Sans', sans-serif;
+}
+.container {
+    width: 70%;
+    margin: 30px auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-sm bg-light navbar-light">
+    <ul class="navbar-nav">
+        <li class="nav-item active">
+            <a class="nav-link" href="#">Active</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+    </ul>
+</nav>
+
+
+<div class="container-lg">
+    <div class="container mx-auto" >
+        <div>
+            Modifier la commande N°: <b th:text="${order.number}"></b>
+        </div>
+        <form method="post" th:action="@{/order/edit}" th:object="${order}" class="col p-3 mb-5">
+            <div class="form-group">
+                <label >N° du commande :</label>
+                <input required type="text" th:field="*{number}" th:value="${order.number}"
+                       class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label >Nom du commande:</label>
+                <input  required type="text" th:field="*{name}" th:value="${order.name}"
+                        class="form-control"/>
+            </div>
+
+            <div class="form-group">
+                <label >Type:</label>
+                <input  required type="text" th:field="*{type}" th:value="${order.type}"
+                        class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label >Client:</label>
+                <select class="form-control" th:field="*{client}" id="client" required>
+
+                    <option  th:each="client : ${clients}" th:value="${client.id}"  th:text="${client.lastName}+' '+${client.firstName}"></option>
+                </select>
+            </div>
+            <input i required type="hidden" th:field="*{id}" th:value="${order.id}"
+                   class="form-control"/>
+            <input type="submit" class="btn btn-primary float-right" value="Modifier">
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -72,11 +73,11 @@ $(document).ready(function(){
 <div class="container-lg">
     <div class="container mx-auto" >
         <div>
-            Modifier le compte du client : <b th:text="${client.lastName}"></b> &nbsp; <b th:text="${client.firstName}"></b> 
+            Modifier le compte du client : <b th:text="${client.lastName}+' '+${client.firstName}"></b>
         </div>
       <form method="post" th:action="@{/client/edit}" th:object="${client}" class="col p-3 mb-5">
             <div class="form-group">
-                <label for="lasttName">Nom :</label>
+                <label for="lastName">Nom :</label>
                 <input id="lastName" required type="text" th:field="*{lastName}" th:value="${client.lastName}"
                        class="form-control"/>
             </div>
@@ -89,13 +90,13 @@ $(document).ready(function(){
             <div class="form-group">
 
                 <label >Numero de Téléphone:</label>
-                <input id="phoneNumber" required type="text" th:field="*{phoneNumber}" th:value="${client.phoneNumber}"
+                <input required type="text" th:field="*{phoneNumber}" th:value="${client.phoneNumber}"
                                class="form-control"/>
             </div>
 
             <div class="form-group">
                 <label for="adresseMail">Adresse mail:</label>
-                <input id="adresseMail"  required type="text" th:field="*{mailAddress}" 
+                <input id="adresseMail"  required type="text" th:field="*{mailAddress}" th:value="${client.address}"
                        class="form-control"/>
             </div>
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -89,22 +90,25 @@ table.table td i {
 <script>
 $(document).ready(function(){
 	
-	
 	// Delete row on delete button click
 	$(document).on("click", ".delete", function(e){
-        if (confirm('Vous voulez supprimer ce client ? Toutes ces commandes seront supprimées également.')) {
-             alert("Your values are :"+ $(this).data("value")); 
+        if (confirm('Vous voulez supprimer cette commande ?')) {
+            url = "../order/delete/"+$(this).data("value")
+            window.location.href = url;
             $(this).parents("tr").remove();
             $(".add-new").removeAttr("disabled");
         }
     });
-
-    function deleteClient(valueId){
-       if (confirm('Vous voulez supprimer ce client:'+valueId+'? Toutes ces commandes seront supprimées également.')) {
+    // Delete row on delete button click
+	$(document).on("click", ".delete-user", function(e){
+        if (confirm('Vous voulez supprimer ce client ? Toutes ces commandes seront supprimées également.')) {
+            //alert("Your values are :"+ $(this).data("value"));
+            url = "../client/delete/"+$(this).data("value")
+            window.location.href = url;
             $(this).parents("tr").remove();
             $(".add-new").removeAttr("disabled");
         }
-   }
+    });
 
 });
 </script>
@@ -135,207 +139,143 @@ $(document).ready(function(){
         <div class="col-9">
         </div>
         <div class="col-1 mx-1">
-            <button class="btn-light btn " title="Modifier"  data-toggle="modal" data-target="#editModal" style="color: #27C46B;cursor: pointer;"><i class="material-icons">&#xE254;</i></button>
+            <a  title="Modifier"  th:href="@{/client/edit/{id}(id=${client.id})}" style="color: #27C46B;cursor: pointer;"><i class="material-icons">&#xE254;</i></a>
         </div>
         <div class="col-1 mx-1">
-            <button class="btn-light btn " title="Supprimer" style="color: #E34724;cursor: pointer;" data-value="1" ><i class="material-icons">&#xE872;</i></button>
+            <a title="Supprimer" style="color: #E34724;cursor: pointer;" th:data-value="${client.id}"  class="delete-user"><i class="material-icons">&#xE872;</i></a>
         </div>
       </div>
-      <div class="row ml-5">
+      <div class="row ml-5 mb-1">
         <div class="col-sm">
           Nom et Prénom :
         </div>
         <div class="col-sm">
-          XXXXXXXXX
+          <span th:text="${client.lastName}+' '+${client.firstName}"></span>
         </div>
       </div>
 
-      <hr>
-      <div class="row ml-5">
+        <div class="row ml-5 mb-1">
+            <div class="col-sm">
+                Téléphone :
+            </div>
+            <div class="col-sm">
+                <span th:text="${client.phoneNumber}"></span>
+            </div>
+        </div>
+
+      <div class="row ml-5 mb-1">
         <div class="col-sm">
           Email:
         </div>
         <div class="col-sm">
-          XXXXXXXXXX
-        </div>
-      </div>
-      <hr>
-      <div class="row ml-5">
-        <div class="col-sm">
-          N° de commandes:
-        </div>
-        <div class="col-sm">
-          XX
+            <span th:text="${client.mailAddress}"></span>
         </div>
       </div>
 
-      <hr>
-      <div class="row ml-5">
+      <div class="row ml-5 mb-1">
+        <div class="col-sm">
+          Nbr de commandes :
+        </div>
+        <div class="col-sm">
+            <span th:text="${#lists.size(client.orders)}"></span>
+        </div>
+      </div>
+
+      <div class="row ml-5 mb-1">
         <div class="col-sm">
           Adress:
         </div>
         <div class="col-sm" style="overflow-wrap:break-word;">
-         <p> XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX </p>
+            <span th:text="${client.address}"></span>
         </div>
       </div>
     </div>
-    <div class="table-responsive">
+    <div class="table-responsive" th:switch="${#lists.size(client.orders)}">
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-8"><h2>Liste de Commandes</h2></div>
+                    <div class="col-sm-8"><h2>Liste de ses Commandes</h2></div>
                     <div class="col-sm-4">
                         <button type="button" class="btn btn-info add-new" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i> Ajouter une commande</button>
                     </div>
                 </div>
             </div>
-            <table class="table table-bordered">
+            <h4 class="text-center" th:case="0">Aucune commande pour le moment!</h4>
+            <table class="table table-bordered" th:case="*">
                 <thead>
-                    <tr>
-                        <th>N° du commande</th>
-                        <th>Nom de la commande</th>
-                        <th>Client</th>
-                        <th>Créé le </th>
-                        <th style="width:  15%">Actions</th>
-                    </tr>
+                <tr>
+                    <th>N° du commande</th>
+                    <th>Nom de la commande</th>
+                    <th>Type</th>
+                    <th style="width:  15%">Actions</th>
+                </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>nff54445 </td>
-                        <td>dsfsdgsdg </td>
-                        <td>farih med</td>
-                        <td>12/05/2020</td>
-                        <td>
-                            <a class="edit" title="Edit" ><i class="material-icons">&#xE254;</i></a>
-                            <a class="delete" title="Delete" ><i class="material-icons">&#xE872;</i></a>
-                            <a class="consult" title="voir les commandes" ><i class="material-icons">&#xE5E1;</i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>nff54445 </td>
-                        <td>dsfsdgsdg </td>
-                        <td>farih med2</td>
-                        <td>12/05/2020</td>
-                        <td>
-                            <a class="edit" title="Edit" ><i class="material-icons">&#xE254;</i></a>
-                            <a class="delete" title="Delete" ><i class="material-icons">&#xE872;</i></a>
-                            <a class="consult" title="voir les commandes" ><i class="material-icons">&#xE5E1;</i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>nff54445 </td>
-                        <td>dsfsdgsdg </td>
-                        <td>farih med3</td>
-                        <td>12/05/2020</td>
-                        <td>
-                            <a class="edit" title="Modifier" ><i class="material-icons">&#xE254;</i></a>
-                            <a class="delete" title="Supprimer" data-value="1" ><i class="material-icons">&#xE872;</i></a>
-                            <a class="consult"  title="Voir les commandes" ><i class="material-icons">&#xE5E1;</i></a>
-                        </td>
-                    </tr>      
+                <tr th:each="order : ${client.orders}">
+                    <td th:text="${order.number}"></td>
+                    <td th:text="${order.name}"></td>
+                    <td th:text="${order.type}"></td>
+                    <td>
+                        <a class="edit" title="Edit" th:href="@{/order/edit/{id}(id=${order.id})}" ><i class="material-icons">&#xE254;</i></a>
+                        <a class="delete" title="Delete" th:data-value="${order.id}" ><i class="material-icons">&#xE872;</i></a>
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+
 <!-- Add Modal -->
-  <div class="modal" id="addModal">
+<div class="modal" id="addModal">
     <div class="modal-dialog">
-      <div class="modal-content">
-      
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h5 class="modal-title">Ajouter Un Client</h5>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        
-        <!-- Modal body -->
-        <div class="modal-body">
-           
-           <form method="post" th:action="@{/users/}" th:object="${userInfo}" class="col p-3 mb-5">
-            <div class="form-group">
-                <label for="firstName">Nom :</label>
-                <input id="firstName" required type="text" th:field="*{lastName}"
-                       class="form-control"/>
-            </div>
-            <div class="form-group">
-                <label for="lastName">Prénom:</label>
-                <input id="lastName"  required type="text" th:field="*{firstName}"
-                       class="form-control"/>
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h5 class="modal-title">Ajouter Une commande</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
-            <div class="form-group">
-                <label for="lastName">Adresse mail:</label>
-                <input id="lastName"  required type="text" th:field="*{lastName}"
-                       class="form-control"/>
+            <!-- Modal body -->
+            <div class="modal-body">
+
+                <form method="post" th:action="@{/order/add}" th:object="${order}" class="col p-3 mb-5">
+                    <div class="form-group">
+                        <label >N° du commande :</label>
+                        <input required type="text" th:field="*{number}"
+                               class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label >Nom du commande:</label>
+                        <input  required type="text" th:field="*{name}"
+                                class="form-control"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label >Type:</label>
+                        <input  required type="text" th:field="*{type}"
+                                class="form-control"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label >Client:</label>
+                        <select class="form-control" th:field="*{client}" id="client" required>
+                            <option th:value="${client.id}" th:text="${client.lastName}+' '+${client.firstName}"></option>
+                        </select>
+                    </div>
+
+
             </div>
 
-            <div class="form-group">
-                <label for="lastName">Adresse :</label>
-                <input id="lastName"  required type="text" th:field="*{lastName}"
-                       class="form-control"/>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+
+                <input type="submit" class="btn btn-primary" value="Ajouter">
             </div>
+            </form>
         </div>
-        
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <input type="submit" class="btn btn-primary" value="Ajouter">
-        </div>
-        </form>
-      </div>
     </div>
-  </div>
-
-  <!-- Edit User Modal -->
-  <div class="modal" id="editModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-      
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h5 class="modal-title">Modifier Un Client</h5>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        
-        <!-- Modal body -->
-        <div class="modal-body">
-           
-           <form method="post" th:action="@{/users/}" th:object="${userInfo}" class="col p-3 mb-5">
-            <div class="form-group">
-                <label for="firstName">Nom :</label>
-                <input id="firstName" placeholder="Enter First Name" required type="text" th:field="*{lastName}"
-                       class="form-control"/>
-            </div>
-            <div class="form-group">
-                <label for="lastName">Prénom:</label>
-                <input id="lastName"  required type="text" th:field="*{firstName}"
-                       class="form-control"/>
-            </div>
-
-            <div class="form-group">
-                <label for="lastName">Adresse mail:</label>
-                <input id="lastName"  required type="text" th:field="*{lastName}"
-                       class="form-control"/>
-            </div>
-
-            <div class="form-group">
-                <label for="lastName">Adresse :</label>
-                <input id="lastName"  required type="text" th:field="*{lastName}"
-                       class="form-control"/>
-            </div>
-        
-
-        </div>
-        
-        <!-- Modal footer -->
-        <div class="modal-footer">
-        
-          <input type="submit" class="btn btn-primary" value="Modifier">
-        </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
+</div>
 </body>
 </html>
